@@ -1,0 +1,10 @@
+.zai-message-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    height: 100%;
+}
+
+.zai-message {
+    flex-shrink: 0;
+}
