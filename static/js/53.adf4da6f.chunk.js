@@ -1,0 +1,2 @@
+(this["webpackJsonpzaichat-ionic"]=this["webpackJsonpzaichat-ionic"]||[]).push([[53],{152:function(n,t,i){"use strict";i.r(t),i.d(t,"startStatusTap",(function(){return o}));var e=i(18),c=i(17),o=function(){var n=window;n.addEventListener("statusTap",(function(){Object(e.h)((function(){var t=n.innerWidth,i=n.innerHeight,o=document.elementFromPoint(t/2,i/2);if(o){var r=o.closest("ion-content");r&&new Promise((function(n){return Object(c.c)(r,n)})).then((function(){Object(e.f)((function(){return r.scrollToTop(300)}))}))}}))}))}}}]);
+//# sourceMappingURL=53.adf4da6f.chunk.js.map
