@@ -3,14 +3,18 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+import { store } from './store'
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { Provider } from 'react-redux';
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

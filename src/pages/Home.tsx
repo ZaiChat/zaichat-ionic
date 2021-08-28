@@ -1,19 +1,23 @@
 import { IonContent, IonFooter, IonHeader, IonInput, IonItem, IonLabel, IonList, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import { useState } from 'react';
+import { useAppDispatch, useAppSelector} from '../hooks'
+import { addMessage } from '../store'
 import './Home.css';
+
 
 const Home: React.FC = () => {
 
   const [message, setMessage] = useState<string | undefined>();
-  const [items, setItems] = useState<string[]>([]);
+
+  const messages  = useAppSelector((state) => state.messages);
+  const dispatch = useAppDispatch();
 
   const addItem = () => {
     if (message) {
-      setItems(current => current.concat([message]));
+      dispatch(addMessage(message))
       setMessage(undefined);
     }
   };
-
 
   return (
     <IonPage>
@@ -25,7 +29,7 @@ const Home: React.FC = () => {
       <IonContent fullscreen>
         <IonList className="zai-message-list">
           {
-            items.map(item =>
+            messages.map(item =>
               <IonItem className="zai-message">
                 <IonLabel>{item}</IonLabel>
               </IonItem>
