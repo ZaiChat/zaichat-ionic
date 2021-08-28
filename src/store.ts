@@ -9,7 +9,7 @@ const messagesSlice = createSlice({
     initialState,
     reducers: {
         addMessage(state, action: PayloadAction<string>) {
-            state.push(action.payload);
+            state.unshift(action.payload);
         },
     }
 });

@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
-import { store } from './store'
+import { Provider } from 'react-redux';
+import { store, addMessage } from './store'
 
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { Provider } from 'react-redux';
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { initializeApp } from 'firebase/app';
+import { getFirestore, getDocs, collection, query, orderBy, limitToLast } from 'firebase/firestore'
+
 
 ReactDOM.render(
   <React.StrictMode>
@@ -51,3 +52,20 @@ const app = initializeApp({
   appId: "1:729286463893:web:c81588f5bdffc3b324269c"
 
 });
+
+const db = getFirestore();
+
+const snapshot =
+  getDocs(
+    query(
+      collection(db, 'messages', 'default', 'messages'),
+      orderBy('createdAt'),
+      limitToLast(100),
+    )
+  )
+  .then((result) => {
+    result.docChanges().forEach((change) => {
+      const text: string = change.doc.get('text')
+      store.dispatch(addMessage(text))
+    })
+  });
